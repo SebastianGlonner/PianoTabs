@@ -1,0 +1,34 @@
+<div class="body">
+  <h1>Piano Tabs</h1>
+  <h1>{{pianoKeysCount}}</h1>
+
+  <table>
+    <tr>
+      <td class="ladder" *ngFor="let ladders of pianoBoard.ladders" [attr.colspan]="ladders.keys.length">{{ladders.num}}</td>
+    </tr>
+    <tr>
+      <ng-container *ngFor="let ladders of pianoBoard.ladders">
+        <td *ngFor="let key of ladders.keys" class="key key_{{key.type.toLowerCase()}}">
+          <div class="key_body">
+            <div>{{key.name}}</div>
+          </div>
+        </td>
+      </ng-container>
+    </tr>
+    <tr *ngFor="let key of riverOnBoard.keys" class="song_row">
+      <td *ngFor="let i of loopHelper(key.cellnum - 1)" class="{{'key_' + i % 12}}"></td>
+      <td>{{key.name}}</td>
+      <td *ngFor="let i of loopHelper(this.pianoKeysCount - key.cellnum)" class="{{'key_' + i % 12}}"></td>
+    </tr>
+  </table>
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<router-outlet></router-outlet>
